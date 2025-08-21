@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% block container %}
+<style>
+  /* Reset & body */
+  body { margin:0; padding:20px; font-family:Arial, sans-serif; background:#f4f7f9; }
+
+  /* Page title */
+  .page-title {
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  /* Header (Name / Place) */
+  .result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .result-header .info {
+    font-size: 1rem;
+    color: #333;
+    margin: 5px 0;
+  }
+  .result-header .info span {
+    font-weight: 600;
+    margin-right: 20px;
+  }
+
+  /* Table container */
+  .table-container {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    overflow-x: auto;
+  }
+
+  /* Table styling */
+  .result-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .result-table th,
+  .result-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  .result-table th {
+    background: #f5f5f5;
+    font-weight: 600;
+    color: #333;
+  }
+
+  /* Match pill */
+  .match-pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background: #e6f4ea;
+    color: #388e3c;
+    min-width: 50px;
+    text-align: center;
+  }
+
+  /* Approve button */
+  .approve-btn {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+    display: inline-block;
+  }
+  .approve-btn:hover {
+    background: #f5f5f5;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .result-header { flex-direction: column; align-items: flex-start; }
+    .result-header .info { margin: 5px 0; }
+    .result-table th, .result-table td { padding: 8px; font-size: 0.875rem; }
+  }
+</style>
+
+<h1 class="page-title">Result</h1>
+
+<div class="result-header">
+  <div class="info">
+    <span>Name: {{ patient.name }}</span>
+    <span>Name: {{ request.user.hospitalprofile.hospital_name }}</span>
+  </div>
+  <div class="info">
+    <span>Place: {{ request.user.hospitalprofile.branch_name }}</span>
+  </div>
+</div>
+
+<div class="table-container">
+  <table class="result-table">
+    <thead>
+      <tr>
+        <th>Sr no</th>
+        <th>Name Of The Hospital</th>
+        <th>HLA</th>
+        <th>Blood Type</th>
+        <th>Place</th>
+        <th>Match</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for match in matches %}
+      <tr>
+        <td>{{ forloop.counter }}.</td>
+        <td>{{ match.hospital_name }}</td>
+        <td>{{ match.hla_percentage }}%</td>
+        <td>{{ match.blood_match_percentage }}%</td>
+        <td>{{ match.place }}</td>
+        <td>
+          <span class="match-pill">{{ match.overall_match }}%</span>
+          <a href="{% url 'approve_match' match.id %}" class="approve-btn">approve</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6" style="text-align:center; padding:20px;">
+          No matching hospitals found.
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

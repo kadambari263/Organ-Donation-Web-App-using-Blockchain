@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% block container %}
+<style>
+  .form-box {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .form-box h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+    font-weight: 600;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .field {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .field label {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .field input,
+  .field select {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+
+  .gender-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 8px;
+  }
+
+  .hla-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 6px;
+  }
+
+  .hla-group .field {
+    min-width: 150px;
+  }
+
+  .hla-group small {
+    display: block;
+    text-align: center;
+    margin-top: 4px;
+    font-size: 14px;
+    color: #555;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  .btn-back {
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .btn-submit {
+    padding: 12px 28px;
+    background: #8dd3f4;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .btn-submit:hover {
+    background: #6ac1ff;
+  }
+
+  @media (max-width: 768px) {
+    .row, .hla-group {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<div class="form-box">
+  <h2>Receiver Registration Form</h2>
+  <form method="post">
+    {% csrf_token %}
+
+    <!-- Row 1: Name / Age / Email / Mobile -->
+    <div class="row">
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" name="name" required>
+      </div>
+      <div class="field">
+        <label for="age">Age</label>
+        <input type="number" name="age" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" name="email" required>
+      </div>
+      <div class="field">
+        <label for="mobile_number">Mobile Number</label>
+        <input type="text" name="mobile_number" required>
+      </div>
+    </div>
+
+    <!-- Row 2: Gender / Aadhaar -->
+    <div class="row">
+      <div class="field" style="flex: 2;">
+        <label>Gender :</label>
+        <div class="gender-group">
+          <label><input type="radio" name="gender" value="Male" required> Male</label>
+          <label><input type="radio" name="gender" value="Female"> Female</label>
+          <label><input type="radio" name="gender" value="Other"> Other</label>
+        </div>
+      </div>
+      <div class="field" style="flex: 3;">
+        <label for="aadhaar">Aadhaar</label>
+        <input type="text" name="aadhaar" required>
+      </div>
+    </div>
+
+    <!-- Row 3: Blood type / HLA -->
+    <div class="row">
+      <div class="field">
+        <label for="blood_group">Blood Group</label>
+        <select name="blood_group" required>
+          <option value="">Select</option>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+        </select>
+      </div>
+      <div class="field" style="flex: 3;">
+        <label>HLA :</label>
+        <div class="hla-group">
+          <div class="field">
+            <input type="text" name="hla_a" required>
+            <small>HLA - A</small>
+          </div>
+          <div class="field">
+            <input type="text" name="hla_b" required>
+            <small>HLA - B</small>
+          </div>
+          <div class="field">
+            <input type="text" name="hla_dr" required>
+            <small>HLA - DR</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 4: Organ / Hospital / Place -->
+    <div class="row">
+      <div class="field">
+        <label for="organ_needed">Organ Needed</label>
+        <input type="text" name="organ_needed" required>
+      </div>
+      <div class="field">
+        <label for="hospital">Hospital</label>
+        <input type="text" name="hospital">
+      </div>
+      <div class="field">
+        <label for="place">Place</label>
+        <input type="text" name="place">
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <button type="button" class="btn-back" onclick="history.back()">Back</button>
+      <button type="submit" class="btn-submit">Submit</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

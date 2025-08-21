@@ -1,0 +1,109 @@
+<!-- Footer Section -->
+<footer class="footer bg-light pt-5 pb-4 mt-5">
+    <div class="container">
+        <div class="row">
+
+            <!-- About Column -->
+            <div class="col-md-4 mb-4">
+                <h5>About Organ Donation</h5>
+                <p>
+                    We are committed to saving lives through an efficient and ethical organ donation platform that connects donors with those in need.
+                </p>
+                <p>
+                    <strong>Contact:</strong><br>
+                    123 Health St, Medical City<br>
+                    Email: <a href="mailto:info@hospital.com">info@hospital.com</a>
+                </p>
+            </div>
+
+            <!-- Quick Links Column -->
+            <div class="col-md-4 mb-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled footer-links">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'contact_page' %}">Contact</a></li>
+                    <li><a href="{% url 'developers' %}">Developer</a></li>
+                </ul>
+
+                <div class="mt-4">
+                    <h6>Follow Us</h6>
+                    <a href="https://facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Stay Connected Column -->
+            <div class="col-md-4 mb-4 d-none d-md-block">
+                <h5>Stay Connected</h5>
+                <p>Subscribe for updates on donor availability, health tips, and organ donation awareness campaigns.</p>
+                <input type="email" class="form-control form-control-sm mb-2" placeholder="Your email address">
+                <button class="btn btn-sm btn-primary">Subscribe</button>
+            </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="text-center">
+            <p class="mb-0">&copy; 2025 Organ Donation Platform. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- FontAwesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<!-- Footer Styling -->
+<style>
+    .footer {
+        font-family: 'Segoe UI', sans-serif;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .footer h5, .footer h6 {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 1rem;
+    }
+
+    .footer p, .footer a {
+        color: #555;
+        font-size: 0.95rem;
+    }
+
+    .footer a:hover {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .footer .footer-links li {
+        margin-bottom: 8px;
+    }
+
+    .footer .social-icon {
+        font-size: 1.3rem;
+        margin-right: 12px;
+        color: #555;
+        transition: color 0.3s ease;
+    }
+
+    .footer .social-icon:hover {
+        color: #007bff;
+    }
+
+    .footer input[type="email"] {
+        max-width: 100%;
+    }
+
+    @media (max-width: 768px) {
+        .footer .row {
+            text-align: center;
+        }
+
+        .footer .col-md-4:last-child {
+            display: none;
+        }
+    }
+</style>

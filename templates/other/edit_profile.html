@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block container %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-4">Edit Profile</h3>
+
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-success" role="alert">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+
+          <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="hospital_name" class="form-label">Hospital Name</label>
+              <input type="text" class="form-control" id="hospital_name" name="hospital_name" value="{{ hospital_name }}" required>
+            </div>
+            <div class="mb-3">
+              <label for="branch_name" class="form-label">Branch Name</label>
+              <input type="text" class="form-control" id="branch_name" name="branch_name" value="{{ branch_name }}">
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <textarea class="form-control" id="address" name="address" rows="3">{{ address }}</textarea>
+            </div>
+            <div class="mb-3">
+              <label for="mobile_number" class="form-label">Mobile Number</label>
+              <input type="text" class="form-control" id="mobile_number" name="mobile_number" value="{{ mobile_number }}">
+            </div>
+            <div class="d-flex justify-content-between">
+              <a href="{% url 'profile' %}" class="btn btn-secondary">Cancel</a>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

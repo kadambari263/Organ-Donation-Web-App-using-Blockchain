@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block container %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <!-- Profile Image -->
+         
+          
+          <!-- User Information -->
+          <h3 class="card-title">{{ user.username }}</h3>
+          <p class="text-muted">{{ user.email }}</p>
+          
+          {% if profile %}
+            <ul class="list-group list-group-flush text-start mt-4">
+              <li class="list-group-item"><strong>Hospital Name:</strong> {{ profile.hospital_name }}</li>
+              <li class="list-group-item"><strong>Branch Name:</strong> {{ profile.branch_name }}</li>
+              <li class="list-group-item"><strong>Address:</strong> {{ profile.address }}</li>
+              <li class="list-group-item"><strong>Mobile Number:</strong> {{ profile.mobile_number }}</li>
+            </ul>
+          {% else %}
+            <p class="mt-3">No hospital profile found for this user.</p>
+          {% endif %}
+          
+          <!-- Edit Profile Button -->
+          <div class="mt-4">
+           <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

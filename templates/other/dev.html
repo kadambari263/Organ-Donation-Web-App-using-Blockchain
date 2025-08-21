@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block container %}
+<div class="container">
+    <h1>Meet The Developers</h1>
+
+    <div class="developer-grid">
+        <div class="developer">
+            <img src="{% static 'ankitas.jpg' %}" alt="Ankita Swain">
+            <p>Ankita Swain</p>
+        </div>
+        <div class="developer">
+            <img src="{% static 'sunita.jpg' %}" alt="Sunita Pawar">
+            <p>Sunita Pawar</p>
+        </div>
+        <div class="developer">
+            <img src="{% static 'kadambarimm.jpg' %}" alt="Kadambari Mane">
+            <p>Kadambari Mane</p>
+        </div>
+        <div class="developer">
+            <img src="{% static 'apurvab.jpg' %}" alt="Apurva Birajdar">
+            <p>Apurva Birajdar</p>
+        </div>
+    </div>
+
+    <div class="vision">
+        <h2>Our Vision</h2>
+        <div class="title-mid">Secure Organ Chain</div>
+        <p class="subtitle">
+            A Blockchain-Based Framework for Transparent, Tamper-Resistant, and Efficient Organ Donation
+        </p>
+        <p>
+            We aim to transform organ donation by using blockchain for secure, transparent, and tamper-proof
+            records. With smart contracts automating verification and matching, and real-time organ tracking, we
+            ensure faster, fairer, and more reliable transplants. Our goal is to build a trusted, efficient system
+            that saves lives through technology.
+        </p>
+    </div>
+
+    <div class="tech">
+        <h2>Technologies Used</h2>
+        <ul>
+            <li>Django (Backend Framework)</li>
+            <li>HTML, CSS, JavaScript (Frontend)</li>
+            <li>SQLite / PostgreSQL (Database)</li>
+            <li>Blockchain Concepts & Smart Contracts (Research Integration)</li>
+            <li>Power BI / Data Visualization Tools (if applicable)</li>
+            <li>Git & GitHub (Version Control)</li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 1140px;
+        margin: 40px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    }
+.vision {
+    background-color: #e8f6fc; /* light pastel blue */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(137, 207, 240, 0.2);
+}
+
+
+    h1,
+    h2 {
+        text-align: center;
+        color: #2c3e50;
+    }
+
+    .developer-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        justify-items: center;
+        margin: 40px 0;
+    }
+
+    .developer {
+        text-align: center;
+    }
+
+    .developer img {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease;
+    }
+
+    .developer img:hover {
+        transform: scale(1.05);
+    }
+
+    .developer p {
+        margin-top: 10px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #34495e;
+    }
+
+
+
+    .title-mid {
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-top: -10px;
+        margin-bottom: 5px;
+        color: #2c3e50;
+    }
+
+/* Vertical Line */
+.developer-grid::before {
+    content: "";
+    position: absolute;
+    top: -10%;  /* Extended top space */
+    bottom: -10%;  /* Extended bottom space */
+    left: 50%;
+    width: 4px;
+    background: linear-gradient(to bottom, #ffffff, #89CFF0, #ffffff);
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(137, 207, 240, 0.5);
+    transform: translateX(-50%);
+}
+
+
+/* Horizontal Line */
+.developer-grid::after {
+    content: "";
+    position: absolute;
+    left: -2%; /* Extended left space */
+    right: -2%; /* Extended right space */
+    top: 50%;
+    height: 4px;
+    background: linear-gradient(to right, #ffffff, #89CFF0, #ffffff);
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(137, 207, 240, 0.5);
+    transform: translateY(-50%);
+}
+
+
+.developer-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px; /* Increased space between elements */
+    justify-items: center;
+    margin: 60px 0; /* Increased top and bottom margins */
+}
+
+.vision, .tech {
+    margin-top: 40px; /* Increased margin-top to add more space between sections */
+    margin-bottom: 40px; /* Increased margin-bottom for more space */
+}
+
+/* Other Styles remain unchanged */
+
+
+    .subtitle {
+        text-align: center;
+        font-size: 1rem;
+        color: #555;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+
+    ul {
+        padding-left: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .developer-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}

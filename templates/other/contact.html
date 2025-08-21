@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block container %}
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    font-size: 1.1rem;
+    color: #333;
+  }
+
+
+  .intro {
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    background: #fff;
+    gap: 2rem;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+
+  .intro-image {
+    flex-shrink: 0;
+  }
+
+  .intro-image img {
+    max-width: 350px;
+    width: 100%;
+    height: auto;
+  }
+
+  .intro-text {
+    flex: 1;
+    text-align: center;
+    max-width: 600px;
+    margin: auto;
+  }
+
+  .intro-text .lead {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .intro-text p {
+  font-size: 1.4rem;
+  line-height: 1.8;
+}
+
+
+  .highlight {
+    color: #35A1D4C4;
+    font-weight: bold;
+  }
+
+  .contact-panels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .panel {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    flex: 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .panel h2 {
+    background: #35A1D4C4;
+    color: #fff;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 6px;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .panel p {
+    margin-bottom: 0.75rem;
+  }
+
+  .panel a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .panel a:hover {
+    text-decoration: underline;
+  }
+
+  .panel.form label {
+    display: block;
+    margin: 0.75rem 0 0.25rem;
+    font-size: 1rem;
+  }
+
+  .panel.form input,
+  .panel.form textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+
+  .btn-submit {
+    margin-top: 1rem;
+    background: #35A1D4C4;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  .btn-submit:hover {
+    background: #2a90b6;
+  }
+
+  .map-section {
+    background: #fff;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  .map-section h2 {
+    background: #35A1D4C4;
+    color: #fff;
+    font-size: 2rem;
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
+
+  .map-container iframe {
+    width: 100%;
+    height: 450px;
+    border: none;
+    border-radius: 10px;
+  }
+</style>
+
+
+
+<section class="intro">
+  <div class="intro-image">
+    <img src="{% static 'contact.png' %}" alt="Community">
+  </div>
+  <div class="intro-text">
+    <p class="lead">Get in Touch</p>
+    <p>
+      Have a question, a story, or just want to support the cause?<br>
+      Join the <span class="highlight">Mediplus</span> mission to give the gift of life.<br>
+      <span class="highlight">Every message matters. Every voice counts.</span>
+    </p>
+  </div>
+</section>
+
+<section class="contact-panels">
+  <div class="panel helpline">
+    <h2>Helpline</h2>
+    <p><strong>Address:</strong> 7, First Floor, Local Shopping Centre, Kothrud, Pune – 411038</p>
+    <p><strong>Phone:</strong> +91-20-25455555</p>
+    <p><strong>Toll Free:</strong> 1800-120-3648</p>
+    <p><strong>Email:</strong> <a href="mailto:mediplus.soput@gmail.com">mediplus.soput@gmail.com</a></p>
+  </div>
+
+  <div class="panel form">
+    <h2>Leave your message here</h2>
+    <form action="{% url 'contact_submit' %}" method="post">
+      {% csrf_token %}
+      <label for="id_name">Name</label>
+      <input type="text" id="id_name" name="name" placeholder="Smit Mills" required>
+
+      <label for="id_email">Email</label>
+      <input type="email" id="id_email" name="email" placeholder="smitmi1234@gmail.com" required>
+
+      <label for="id_subject">Subject</label>
+      <input type="text" id="id_subject" name="subject" placeholder="Subject" required>
+
+      <label for="id_message">Message</label>
+      <textarea id="id_message" name="message" rows="5" placeholder="Message" required></textarea>
+
+      <button type="submit" class="btn-submit">SUBMIT</button>
+    </form>
+  </div>
+</section>
+
+<section class="map-section">
+  <h2>How To Reach Us?</h2>
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.03447396989!2d73.86296739999999!3d18.524616450000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1746642855396!5m2!1sen!2sin"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log("Contact page ready");
+  });
+</script>
+
+{% endblock %}

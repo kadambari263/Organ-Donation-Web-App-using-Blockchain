@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<style>
+  .matched-donor-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .matched-donor-container h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+
+  .matched-donor-container ul {
+    list-style: none;
+    padding: 0;
+    font-size: 16px;
+  }
+
+  .matched-donor-container ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .matched-donor-container ul li:last-child {
+    border-bottom: none;
+  }
+
+  .no-result {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+    padding: 40px 0;
+  }
+
+  .popup-message {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    font-weight: bold;
+    display: none;
+    z-index: 1000;
+  }
+
+  .btn-primary {
+    background-color: black;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  .btn-primary:hover {
+    background-color: #333;
+  }
+</style>
+
+{% if messages %}
+  <div id="popup-message" class="popup-message">
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+  </div>
+
+  <script>
+    const popup = document.getElementById('popup-message');
+    if (popup) {
+      popup.style.display = 'block';
+      setTimeout(() => {
+        popup.style.display = 'none';
+      }, 3000);
+    }
+  </script>
+{% endif %}
+
+<div class="matched-donor-container">
+  {% if organ %}
+    <h2>Matched Donor Details</h2>
+    <ul>
+      <li><strong>Organ:</strong> {{ organ }}</li>
+      <li><strong>Blood Group:</strong> {{ blood_group }}</li>
+      <li><strong>Hospital:</strong> {{ hospital }}</li>
+      <li><strong>Age:</strong> {{ age }}</li>
+    </ul>
+
+    {% if added_by %}
+      <h2>Donor Added By</h2>
+      <ul>
+        <li><strong>Username:</strong> {{ added_by.username }}</li>
+        <li><strong>Email:</strong> {{ added_by.email }}</li>
+      </ul>
+    {% endif %}
+
+    <p><strong>Match Score:</strong>
+      <span style="color:{% if match_score_percent >= 70 %}green{% elif match_score_percent >= 50 %}orange{% else %}red{% endif %}; font-weight:bold;">
+        {{ match_score_percent }}%
+      </span>
+    </p>
+
+    <form action="{% url 'send_request_email' %}" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="receiver_id" value="{{ receiver.id }}">
+      <button type="submit" class="btn btn-primary">Send Request Email</button>
+    </form>
+  {% else %}
+    <div class="no-result">
+      <h2>No Match Found</h2>
+      <p>There is currently no donor matched with this receiver.</p>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

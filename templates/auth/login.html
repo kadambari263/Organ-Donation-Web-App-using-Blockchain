@@ -1,0 +1,140 @@
+
+{% block container %}
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+    }
+
+    .center-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        text-align: center;
+    }
+
+    .brand {
+        font-size: 60px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .brand span:first-child {
+        color: #2e7d32; /* green */
+    }
+
+    .tagline {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 40px;
+    }
+
+  .login-box {
+    width: 450px;
+    padding: 40px;
+    border: 1px solid #ccc;
+    border-radius: 30px; /* Increased from 12px to 30px */
+    background-color: #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    text-align: left;
+}
+
+
+    .login-box h3 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 28px;
+    }
+
+    .login-box label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+
+    .login-box input {
+        width: 100%;
+        padding: 14px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        border: 1px solid #aaa;
+        border-radius: 20px;
+    }
+
+    .login-box button {
+        width: 100%;
+        padding: 14px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+   .register-text {
+    margin-top: 25px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+    .register-text a {
+        color: black;
+        text-decoration: underline;
+    }
+
+    @media (max-width: 500px) {
+        .login-box {
+            width: 90%;
+        }
+
+        .brand {
+            font-size: 42px;
+        }
+
+        .tagline {
+            font-size: 18px;
+        }
+
+        .login-box h3 {
+            font-size: 24px;
+        }
+    }
+</style>
+
+<div class="center-wrapper">
+    <div class="brand">
+        <span>Medi</span><span style="color: black;">Pulse</span>
+    </div>
+    <div class="tagline">
+        " Where Every Donation Becomes a Second Chance at Life."
+    </div>
+
+    <div class="login-box">
+        <h3>Login</h3>
+        <form method="post">
+            {% csrf_token %}
+            <label for="id_username">Admin :</label>
+            {{ form.username }}
+            <label for="id_password">Password :</label>
+            {{ form.password }}
+            <button type="submit">Submit</button>
+        </form>
+        <p style="text-align: center; margin-top: 15px;">
+            <a href="{% url 'password_reset' %}" style="color: black; font-weight: bold; text-decoration: underline;">
+                Forgot password?
+            </a>
+        </p>
+    </div>
+    <div class="register-text">
+        Have you not registered? <a href="{% url 'register' %}">register</a>
+    </div>
+</div>
+{% endblock %}

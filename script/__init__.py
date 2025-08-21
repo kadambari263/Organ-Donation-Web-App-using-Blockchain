@@ -1,0 +1,1 @@
+from home.script.train_model import train_lstm_model

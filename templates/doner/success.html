@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block container %}
+<style>
+    .success-container {
+        max-width: 600px;
+        margin: 80px auto;
+        animation: fadeIn 0.6s ease-in-out;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .card {
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+    }
+
+    h2 {
+        color: #5BBDEAB0;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .list-group-item {
+        font-size: 1rem;
+        border: none;
+        border-bottom: 1px solid #eee;
+        padding: 12px 0;
+    }
+
+    .alert-success {
+        font-size: 0.95rem;
+        background-color: #e6f4ea;
+        color: #5BBDEAB0;
+        border: 1px solid #cce3d8;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 20px;
+    }
+
+    code {
+        background-color: #f5f5f5;
+        padding: 6px 10px;
+        border-radius: 5px;
+        display: inline-block;
+        margin-top: 5px;
+    }
+
+    .btn-primary {
+        margin-top: 25px;
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 576px) {
+        .success-container {
+            margin: 40px 20px;
+            padding: 20px;
+        }
+    }
+</style>
+
+<div class="success-container">
+    <div class="card shadow">
+        <h2>✅ Donor Registered Successfully!</h2>
+
+        <ul class="list-group mb-3">
+            <li class="list-group-item"><strong>Name:</strong> {{ donor.full_name }}</li>
+            <li class="list-group-item"><strong>Organ:</strong> {{ donor.organ }}</li>
+            <li class="list-group-item"><strong>Blood Group:</strong> {{ donor.blood_group }}</li>
+        </ul>
+
+        <div class="alert alert-success">
+            <strong>Blockchain Confirmation Hash:</strong><br>
+            <code>{{ block_hash }}</code>
+        </div>
+
+        <a href="{% url 'home' %}" class="btn btn-primary">Go to Home</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,174 @@
+{% load static %}
+<header class="site-header">
+
+  <!-- Brand -->
+  <div>
+    <a href="{% url 'home' %}" class="brand">
+      <span class="brand-green">Medi</span><span class="brand-black">Pulse</span>
+    </a>
+  </div>
+
+  <!-- Navigation -->
+  <div>
+    <nav class="main-nav">
+      <a href="{% url 'home' %}"
+         class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+        Home
+      </a>
+      <a href="{% url 'about' %}"
+         class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">
+        About
+      </a>
+      <a href="{% url 'receiver_list' %}"
+         class="nav-link {% if request.resolver_match.url_name == 'receiver_list' %}active{% endif %}">
+        Patient List
+      </a>
+      <a href="{% url 'contact_page' %}"
+         class="nav-link {% if request.resolver_match.url_name == 'contact_page' %}active{% endif %}">
+        Contact
+      </a>
+    </nav>
+  </div>
+
+  <!-- Auth Buttons -->
+  <div class="auth">
+  {% if user.is_authenticated %}
+    <!-- Profile Icon -->
+<!-- Profile Icon -->
+<a href="{% url 'profile' %}" class="profile-icon-link">
+  <i class="fas fa-user-circle profile-icon"></i>
+</a>
+
+
+    <a href="{% url 'logout' %}" class="signin-btn">Logout</a>
+  {% else %}
+    <a href="{% url 'login' %}" class="signin-btn">Sign in</a>
+  {% endif %}
+</div>
+
+
+</header>
+
+<style>
+  .site-header {
+    background: #89CFF0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 12px;
+  }
+
+  .brand {
+    font-size: 1.85rem;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+
+  .brand-green {
+    color: #28a745;
+  }
+
+  .brand-black {
+    color: #000;
+  }
+
+  .main-nav {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .nav-link {
+    position: relative;
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+    color: #fff;
+    text-decoration: none;
+    padding-bottom: 3px;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: #000;
+  }
+
+  .nav-link.active::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #000;
+  }
+
+  .signin-btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    background: #3A9BDC;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background 0.25s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .signin-btn:hover {
+    background: #318CC9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .auth {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    white-space: nowrap;
+  }
+
+  .profile-icon-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+.profile-icon-link i {
+  font-size: 2.6rem;  /* Increase size */
+  color: #fff;        /* White color */
+  transition: color 0.2s ease;
+}
+
+.profile-icon-link:hover i {
+  color: #000;
+}
+
+
+  @media (max-width: 768px) {
+    .site-header {
+      flex-wrap: wrap;
+      padding: 1rem;
+    }
+
+    .main-nav {
+      gap: 1.5rem;
+      margin-top: 0.75rem;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .nav-link {
+      font-size: 1.15rem;
+    }
+
+    .brand {
+      font-size: 1.6rem;
+    }
+  }
+</style>
+
+
